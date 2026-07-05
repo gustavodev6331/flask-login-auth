@@ -26,8 +26,6 @@ db.init_app(app)
 
 # CREATE TABLE IN DB
 
-
-
 class User(UserMixin, db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     email: Mapped[str] = mapped_column(String(100), unique=True)
@@ -68,8 +66,6 @@ def register():
             return redirect(url_for("secrets"))
 
     return render_template("register.html", logged_in=current_user.is_authenticated)
-
-
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -116,6 +112,10 @@ def download():
     as_attachment=True
 )
 
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        return redirect(url_for('home'))
 
 if __name__ == "__main__":
     app.run(debug=True)
