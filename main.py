@@ -27,6 +27,7 @@ db.init_app(app)
 # CREATE TABLE IN DB
 
 
+
 class User(UserMixin, db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     email: Mapped[str] = mapped_column(String(100), unique=True)
